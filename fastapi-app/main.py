@@ -15,7 +15,7 @@ from common.exception_handler import (
 from common.result import Result
 from routers import address, auth, category, dashboard, files, goods, notice, orders, user
 from seed_data import seed_database
-from settings import BASE_DIR, CORS_ORIGINS, DB_URL
+from settings import BASE_DIR, CORS_ORIGINS, DB_URL, UPLOAD_DIR
 
 MODULES = {"models": ["models"]}
 FRONTEND_DIST = BASE_DIR.parent / "vue-app" / "dist"
@@ -46,7 +46,7 @@ app.add_middleware(
 )
 app.add_exception_handler(CustomException, custom_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
-app.mount("/uploads", StaticFiles(directory=str(BASE_DIR / "static" / "uploads")), name="uploads")
+app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
 for router in (
     auth.router,

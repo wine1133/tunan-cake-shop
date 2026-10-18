@@ -1,0 +1,17 @@
+.git
+.gitignore
+.gitattributes
+.venv
+**/.venv
+**/__pycache__
+**/*.pyc
+**/node_modules
+vue-app/dist
+fastapi-app/data/*.db
+fastapi-app/data/*.db-*
+fastapi-app/static/uploads/*
+!fastapi-app/static/uploads/.gitkeep
+.env
+**/.env
+*.log
+audio-check.wav

@@ -104,6 +104,37 @@ uvicorn main:app --host 127.0.0.1 --port 8000
 
 打开 <http://127.0.0.1:8000> 即可同时访问前端与 API。
 
+## 云端部署（推荐 Railway）
+
+对于这个项目，推荐使用 **Railway**：它支持 Docker、GitHub 自动部署、托管 MySQL 和持久化 Volume，正好覆盖 FastAPI、Tortoise ORM 与图片上传的需求。GitHub Pages 只能托管静态页面，Vercel 的 Serverless 文件系统也不适合当前的上传与数据库连接方式。
+
+仓库已经包含：
+
+- `Dockerfile`：自动构建 Vue 前端，并由 FastAPI 单端口提供页面与 API
+- `railway.json`：Dockerfile 构建、`/api/health` 健康检查和失败重启策略
+- `.dockerignore`：排除本地数据库、虚拟环境与构建产物
+
+### Railway 部署步骤
+
+1. 在 Railway 中选择 **New Project → Deploy from GitHub repo**，连接 `wine1133/tunan-cake-shop`
+2. 在同一个项目中添加 **MySQL** 服务
+3. 为 Web 服务添加以下环境变量：
+
+```env
+DB_URL=${{MySQL.MYSQL_URL}}
+SECRET_KEY=替换为一段足够长的随机字符串
+DATA_DIR=/data/db
+UPLOAD_DIR=/data/uploads
+```
+
+4. 给 Web 服务添加一个 Volume，并挂载到 `/data`
+5. 在 **Settings → Networking** 中生成公开域名
+6. 部署完成后访问 `https://你的域名/api/health`，确认返回 `code: "200"`
+
+首次启动会自动建表并写入演示数据。上传图片与 SQLite 数据会保存在 `/data` Volume 中，重新部署不会丢失。
+
+> 正式商用前请修改默认管理员密码、`SECRET_KEY`，并按需配置自定义域名与数据库备份。
+
 ## 体验账号
 
 | 角色 | 账号 | 密码 | 入口 |

@@ -1,0 +1,10 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+tortoise-orm==0.21.7
+aiosqlite==0.20.0
+asyncmy==0.2.10
+python-multipart==0.0.20
+PyJWT==2.10.1
+pydantic==2.10.4
+email-validator==2.2.0
+python-dotenv==1.2.4

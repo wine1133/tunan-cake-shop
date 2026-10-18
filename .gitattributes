@@ -1,0 +1,17 @@
+* text=auto eol=lf
+*.py text
+*.js text
+*.vue text
+*.css text
+*.html text
+*.md text
+*.json text
+*.sql text
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.gif binary
+*.mp4 binary
+*.woff2 binary
+*.ttf binary

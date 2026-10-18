@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+fastapi-app/data/*.db
+fastapi-app/data/*.db-*
+fastapi-app/static/uploads/*
+!fastapi-app/static/uploads/.gitkeep
+
+# Node
+node_modules/
+vue-app/dist/
+npm-debug.log*
+
+# Environment & editor
+.env
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
